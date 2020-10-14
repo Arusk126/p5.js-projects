@@ -12,12 +12,13 @@ header img {
 }
 
 body {
-  height: 125vh;
-  background-image: url('images/ocean\ background.jpg');
+  height: 100%;
+  background-image: url('images/underwater.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
   font-family: sans-serif;
   margin-top: 80px;
-  padding: 15px;
+  padding: 0px;
 }
 
 main {
