@@ -1,67 +1,82 @@
-/* triangle 1 */
-let sideLength = width / 25;
-let x0 = (width/2) + (width/10) - (sideLength/2);
-let y0 = height / 2;
-let x1 = x0 + (sideLength / 2);
-let y1 = y0 - sideLength * sin(45);
-let x2 = x0 + sideLength;
-let y2 = y0;
-
-
-
-var radius = 150;
-var speed = -0.0;
-var countVowel;
-var rcircle=20;
-var center = width/2;
-var value=0;
-var angle=0;
+var radius = 0;
+var speed = 0;
+var rCircle = 0;
+var center = 0;
+var angle = 0;
 var animate = 0;
+
 
 function setup() {
   createCanvas(700, 700);
-  angleMode(DEGREES);
+  angleMode(DEGREES);  
 }
 
 function draw() {
   background("lightblue");
-
   arrows();
-
-  
-
-  for(var j=0; j < 5; j++){
-    var x = center + radius * cos(angle);
-    var y = center + radius * sin(angle);
-    stroke('red');
-    circle(x,y,rcircle);
-    angle = angle+360/5;
-  }
-
-  if(animate==1){
-    angle = angle-speed*(180/PI);
+  var angle = mouseAngle();
+  if(mouseIsPressed) {
+    trackingCircles(angle, "red");
   }
   else{
-    angle=90;
+    startingCircles();
   }
-  print(angle);
 }
 
 function arrows() {
+  /* triangle 1 */
+  var sideLength = width/25;
+  var x0 = (width/2) + (width/10) - (sideLength/2);
+  var y0 = height / 2;
+  var x1 = x0 + (sideLength / 2);
+  var y1 = y0 - sideLength * sin(45);
+  var x2 = x0 + sideLength;
+  var y2 = y0;
+
   strokeWeight(4);
   fill("lightblue");
   stroke("black");
-  arc(width/2, height/2, width/5, height/5, 0, PI/3);
-  arc(width/2, height/2, width/5, height/5, 2*PI/3, PI);
-  arc(width/2, height/2, width/5, height/5, 4*PI/3, 5*PI/3);
+
+  arc(width/2, height/2, width/5, height/5, 0, 60);
+  arc(width/2, height/2, width/5, height/5, 120, 180);
+  arc(width/2, height/2, width/5, height/5, 240, 300);
 
   strokeWeight(1);
-  fill(0);
+  fill("black");
   triangle(x0, y0, x1, y1, x2, y2);
 }
 
-function startingCircles() {
-  fill(220);
-  circle(width/4, height/2, 30);
+function trackingCircles(startingAngle, fillColor) {
+  var center = width/2;
+  var placementRadius = 150;
+  var circleRadius = 60;
+  var angle = startingAngle;
+
+  stroke("black");
+  fill(fillColor);
+  /* creates fingers */
+  for(var i = 0; i < 5; i++) {
+    var x = center + (placementRadius * cos(angle));
+    var y = center + (placementRadius * sin(angle));
+    circle(x,y, circleRadius);
+    if(i ==  3) {
+      angle = angle - 75;
+    }
+    else {
+      angle = angle - 40;
+    }
+  }
 }
 
+function startingCircles() {
+  trackingCircles(25, "gray");
+}
+
+function mouseAngle() {
+  var center = [width/2, height/2];
+  var angle = atan( (center[1] - mouseY) / (mouseX - center[0]) );
+  if(mouseX < center) {
+    angle = angle - 180;
+  }
+  return -angle;
+}
