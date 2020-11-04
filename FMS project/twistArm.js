@@ -35,8 +35,6 @@ function setup() {
 }
 
 function draw() {
-  
-
   if(quitActivity == false) {
     if(rotationsCompleted < 5) {
       background("lightblue");
@@ -64,7 +62,7 @@ function draw() {
       textSize(48);
       fill("green");
       text('Congratulations', width/2, height/2 - (height/10));
-      exit.text = "return to menu"
+      exit.text = "return to menu";
       exit.resize(width/5, height/10);
       exit.locate(width/2 - width/10, height/2);
       exit.draw();
@@ -72,6 +70,7 @@ function draw() {
   }
   else {
     noCanvas();
+    window.location.href = "index.html";
   }
 }
 

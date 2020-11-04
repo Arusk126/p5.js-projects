@@ -21,14 +21,9 @@ body {
   padding: 0px;
 }
 
-main {
-  color: rgb(255, 255, 255);
-  text-shadow: 2px 2px black;
-}
-
 header {
   background-color: rgb(255, 255, 255);
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -42,22 +37,42 @@ header * {
   display: inline;
 }
 
-header li{
-  margin: 20px;
+header li {
+  margin: 15px;
 }
 
-header ul{
+header ul {
 float: none;
-position: absolute;
-top: 25%;
+position: relative;
 left: 50%;
 transform: translate(-50%, -25%);
 }
 
-header li a{
+header li a {
 color: black;
 text-decoration: none;
 font-size: 1.25em;
+}
+
+main {
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px black;  
+  padding: 75px 30%;
+}
+
+#mainArea {
+  padding: 0 40px;
+}
+
+main ul {
+  list-style-type: none;
+  position: relative;
+  display: flex;
+  float: none;
+}
+
+main li {
+  margin: 20px;
 }
 
 .button {
@@ -70,4 +85,16 @@ font-size: 1.25em;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.sketch {
+  background-color: #ed782f; /* Green */
+  border: none;
+  color: white;
+  padding: 30px 64px;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
 }
