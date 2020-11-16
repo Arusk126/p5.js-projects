@@ -4,12 +4,19 @@ var rCircle = 0;
 var center = 0;
 var angle = 0;
 var animate = 0;
+var initialClickAngle = 0;
+
+var hasBeenRecorded = false;
+var ifLoopSection = 0;
 
 var exit;
 var quitActivity = false;
 var rotationsCompleted = 0;
 var hasBeenCounted = false;
 
+var isAnimationGoing = true;
+var animationAngle = 25;
+var animationSpeed = -1;
 
 function setup() {
   createCanvas(700, 700);
@@ -18,7 +25,7 @@ function setup() {
   exit = new Clickable();
   exit.locate(44*width/50, height/50);
   exit.resize(width/10, height/15);
-  exit.textScaled = true;
+  exit.textSize = 20;
   exit.text = "exit";
   exit.onOutside = function () {
     this.color = "#FFFFFF";
@@ -30,48 +37,73 @@ function setup() {
     quitActivity = true;
   };
 
-  finish = new Clickable();
-  finish.locate(width/2, height/4);
+  endAnimation = new Clickable();
+  endAnimation.locate(width/2 - width/14, 3*height/4);
+  endAnimation.resize(width/7, height/15);
+  endAnimation.textScaled = false;
+  endAnimation.textSize = 20;
+  endAnimation.text = "START";
+  endAnimation.onOutside = function () {
+    this.color = "#FFFFFF";
+  };
+  endAnimation.onHover = function () {
+    this.color = "#AA33AA";
+  };
+  endAnimation.onPress = function () {
+    isAnimationGoing = false;
+  };
 }
 
 function draw() {
-  
 
-  if(quitActivity == false) {
-    if(rotationsCompleted < 5) {
-      background("lightblue");
-      arrows();
-      exit.draw();
+  if(isAnimationGoing == true){
+    background("lightblue");
+    arrows();
+    animation();
+    endAnimation.draw();
 
-      var angle = mouseAngle();
-      if(mouseIsPressed && (angle < -70 || angle > 230)){
-        trackingCircles(angle, "green");
-        if(hasBeenCounted == false) {
-          rotationsCompleted++;
-          hasBeenCounted = true;
+    //debug();
+  }
+  else{
+    if(quitActivity == false) {
+      if(rotationsCompleted < 5) {
+        background("lightblue");
+        arrows();
+        exit.draw();
+        recordInitialClick();
+        //debug();
+
+        var angle = mouseAngle();
+        if(mouseIsPressed && (angle < -70 || angle > 230) && (initialClickAngle > 10  && initialClickAngle < 50)){
+          trackingCircles(angle, "green");
+          if(hasBeenCounted == false) {
+            rotationsCompleted++;
+            hasBeenCounted = true;
+          }
+        }
+        else if(mouseIsPressed) {
+          trackingCircles(angle, "red");
+        }
+        else {
+          startingCircles();
+          hasBeenCounted = false;
         }
       }
-      else if(mouseIsPressed) {
-        trackingCircles(angle, "red");
-      }
       else {
-        startingCircles();
-        hasBeenCounted = false;
+        background("lightgray");
+        textSize(48);
+        fill("green");
+        text('Congratulations', width/2, height/2 - (height/10));
+        exit.textSize = 17;
+        exit.text = "return to menu";
+        exit.resize(width/5, height/10);
+        exit.locate(width/2 - width/10, height/2);
+        exit.draw();
       }
     }
     else {
-      background("lightgray");
-      textSize(48);
-      fill("green");
-      text('Congratulations', width/2, height/2 - (height/10));
-      exit.text = "return to menu"
-      exit.resize(width/5, height/10);
-      exit.locate(width/2 - width/10, height/2);
-      exit.draw();
+      noCanvas();
     }
-  }
-  else {
-    noCanvas();
   }
 }
 
@@ -154,4 +186,41 @@ function mouseAngle() {
     angle = angle - 180;
   }
   return -angle;
+}
+
+function animation() {
+  if (animationAngle < -100 && animationAngle > -140) {
+    trackingCircles(animationAngle, "green");
+  }
+  else if(animationAngle < -140) {
+    animationAngle = 25;
+  }
+  else {
+    trackingCircles(animationAngle, "red");
+  }
+  animationAngle += animationSpeed;
+}
+
+function recordInitialClick() {
+  if(mouseIsPressed && (hasBeenRecorded == false) ) {
+    initialClickAngle = mouseAngle();
+    hasBeenRecorded = true;
+    ifLoopSection = 1;
+  }
+  else if(!mouseIsPressed) {
+    hasBeenRecorded = false;
+    initialClickAngle = 0;
+    ifLoopSection = 2;
+  }
+  else {
+    initialClickAngle = initialClickAngle;
+    ifLoopSection = 3;
+  }
+}
+
+function debug() {
+  //text(initialClickAngle, 100, 30);
+  //text(hasBeenRecorded, 100, 50);
+  //text(ifLoopSection, 100, 70);
+  text(animationAngle, 100, 30);
 }

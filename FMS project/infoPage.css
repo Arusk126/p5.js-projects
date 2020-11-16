@@ -1,0 +1,300 @@
+header img {
+    height: 80px;
+}
+
+header {
+	background-color: rgb(255, 255, 255);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 80px;
+	display: block;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0 0 25px 0 black;
+}
+
+header * {
+    display: flex;
+}
+
+header nav {
+	display: inherit;
+}
+  
+header li {
+    margin: 15px;
+}
+  
+header ul {
+    float: inline-start;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, -121%);
+}
+  
+header li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.25em;
+}
+
+.button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+html, body {
+    
+    font-family: 'Lato', helvetica, arial, sans-serif; 
+	font-size: 16px; color: #222;
+}
+
+body {
+	background-image: url('images/underwater.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.clear {
+	clear: both;
+}
+
+p {
+	font-size: 1em;
+	line-height: 1.4em;
+	margin-bottom: 20px;
+	color: #444;
+}
+
+#cv {
+	width: 90%;
+	max-width: 800px;
+	background: #f3f3f3;
+	margin: 110px auto;
+}
+
+.mainDetails {
+	padding: 25px 35px;
+	border-bottom: 2px solid #cf8a05;
+	background: #ededed;
+	text-align: center;
+}
+
+#name h1 {
+	font-size: 2.5em;
+	font-weight: 700;
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	margin-bottom: -6px;
+}
+
+#name h2 {
+	font-size: 2em;
+	margin-left: 2px;
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+}
+
+#mainArea {
+	padding: 0 40px;
+}
+
+#logo {
+	width: 12.5%;
+	float: left;
+	margin-right: 30px;
+}
+
+#logo img {
+	width: 100%;
+	height: auto;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#name {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#contactDetails {
+	float: right;
+}
+
+#contactDetails ul {
+	list-style-type: none;
+	font-size: 0.9em;
+	margin-top: 2px;
+}
+
+#contactDetails ul li {
+	margin-bottom: 3px;
+	color: #444;
+}
+
+#contactDetails ul li a, a[href^=tel] {
+	color: #444; 
+	text-decoration: none;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+}
+
+#contactDetails ul li a:hover { 
+	color: #cf8a05;
+}
+
+
+section {
+	border-top: 1px solid #dedede;
+	padding: 20px 0 0;
+}
+
+section:first-child {
+	border-top: 0;
+}
+
+section:last-child {
+	padding: 20px 0 10px;
+}
+
+.MemberName {
+	float: left;
+	width: 25%;
+}
+.MemberName img {
+	max-width: 125px;
+	max-width: 125px;
+	width: 125%;
+}
+
+.MemberContent {
+	float: right;
+	width: 72.5%;
+}
+
+.MemberName h1 {
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-size: 1.5em;
+	color: #cf8a05;
+}
+
+.MemberContent h2 {
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	font-size: 1.25em;
+	margin-bottom: -1px;
+}
+
+.MemberContent ul {
+	list-style-type: none;
+	-moz-column-count:3;
+	-webkit-column-count:3;
+	column-count:2;
+	margin-bottom: 20px;
+	font-size: 1em;
+	color: #444;
+	padding: 0%;
+}
+
+.MemberContent ul li {
+	margin-bottom: 3px;
+	padding-top: 5%;
+}
+
+.subDetails {
+	font-size: 0.8em;
+	font-style: italic;
+	margin-bottom: 3px;
+}
+
+@media all and (min-width: 602px) and (max-width: 800px) {
+	#logo {
+		display: none;
+	}
+
+	.MemberContent ul {
+		-moz-column-count:2;
+		-webkit-column-count:2;
+		column-count:2;
+	}	
+}
+
+@media all and (max-width: 601px) {
+	#cv {
+		width: 95%;
+		margin: 10px auto;
+		min-width: 280px;
+	}
+	
+	#logo {
+		display: none;
+	}
+	
+	#name, #contactDetails {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	
+	.MemberName, .MemberContent {
+		float: none;
+		width: 100%;
+	}
+	
+	.MemberName {
+		margin-left: -2px;
+		font-size: 1.25em;
+	}
+
+	.MemberContent ul {
+		-moz-column-count:2;
+		-webkit-column-count:2;
+		column-count:2;
+	}	
+}
+
+@media all and (max-width: 480px) {
+	.mainDetails {
+		padding: 15px 15px;
+	}
+	
+	section {
+		padding: 15px 0 0;
+	}
+	
+	#mainArea {
+		padding: 0 25px;
+	}
+
+	.MemberContent ul {
+		-moz-column-count:1;
+		-webkit-column-count:1;
+		column-count:1;
+	}	
+	
+	#name h1 {
+		line-height: .8em;
+		margin-bottom: 4px;
+	}
+}
+
+@media print {
+    #cv {
+        width: 100%;
+    }
+}
+
+
